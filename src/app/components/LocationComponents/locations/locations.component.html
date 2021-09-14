@@ -1,0 +1,40 @@
+<hr />
+<div>
+    <form #myForm="ngForm">
+        <h4>Create Location</h4>
+        <div class="col-md - 2">
+            Country
+        </div>
+        <div class="col-mid-10">
+            <input type="text" [ngModel]="txtLocationCountry" name="txtLocationCountry" class="form-control"
+                placeholder="Enter Company Country" />
+        </div>
+        <div class="col-md - 2">
+            City
+        </div>
+        <div class="col-mid-10">
+            <input type="text" [ngModel]="txtLocationCity" name="txtLocationCity"class="form-control" placeholder="Enter Company Location" />
+        </div>
+        <div class="col-md - 2">
+            Address
+        </div>
+        <div class="col-mid-10">
+            <input type="text" [ngModel]="txtLocationAddress" name="txtLocationAddress" class="form-control" placeholder="Enter Company Address" />
+        </div>
+        <div class="col-md - 2">
+            Lat
+        </div>
+        <div class="col-mid-10">
+            <input type="text" [ngModel]="txtLocationLat" name="txtLocationLat" class="form-control" placeholder="Enter Company Lat" />
+        </div>
+        <div class="col-md - 2">
+            Lng
+        </div>
+        <div class="col-mid-10">
+            <input type="text" [ngModel]="txtLocationLng" name="txtLocationLng" class="form-control" placeholder="Enter Company Lng" />
+        </div>
+        <div >
+            <button  type="button" class="btn btn-primary" (click)="Createlocation(myForm.value)">Save</button>
+        </div>
+    </form>
+</div>

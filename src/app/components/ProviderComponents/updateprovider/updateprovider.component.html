@@ -1,0 +1,112 @@
+<form #content #myForm="ngForm" [formGroup]="providerForm" (ngSubmit)="UpdateProvider()" >
+<h4>Update Provider</h4>
+    <h5>Compamy Details</h5>
+    <div class="columns">
+        <div class="column">
+            <app-input label="Company Title" [control]="providerForm.get('CompannyTitle')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="Company Description" [control]="providerForm.get('CompanyDescription')"></app-input>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <app-input label="Photo" [control]="providerForm.get('CompanyPhoto')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="Email" [control]="providerForm.get('CompanyEmail')"></app-input>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <app-input label="Phone" [control]="providerForm.get('CompanyPhone')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="WebSite" [control]="providerForm.get('WebSite')"></app-input>
+        </div>
+    </div>
+    <hr>
+    <h5>Create Location</h5>
+    <div class="columns">
+        <div class="column">
+            <app-input label="Country" [control]="providerForm.get('Country')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="City" [control]="providerForm.get('City')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="Address" [control]="providerForm.get('Address')"></app-input>
+        </div>
+    </div>    
+    <div class="columns">
+        <div class="column">
+            <app-input label="Lat" [control]="providerForm.get('Lat')"></app-input>
+        </div>
+        <div class="column">
+            <app-input label="Lng" [control]="providerForm.get('Lng')"></app-input>
+        </div>
+    </div>  
+    <div class="columns">
+        <div class="column">
+            <h5>Select Marble</h5>
+    <div class="field">
+        <label class="label"></label>
+        <div class="control">
+            <select formControlName="Marbles" class="form-control" size="10" multiple>                
+                <option *ngFor="let marble of marbles" [ngValue]="marble.MarbleId">
+                    {{marble.Name}}
+                </option>
+            </select>
+        </div>
+        <ng-container *ngIf="providerForm.controls.Marbles.errors">
+            <div class="help is-danger" *ngIf="providerForm.controls.Marbles.errors.required">
+                Value is required
+            </div>
+        </ng-container>
+    </div>
+        </div>
+        <div class="column">
+            <h5>Select Business Type</h5>
+    <div class="field">
+        <label class="label"></label>
+        <div class="control">
+            <select formControlName="BTypes" class="form-control" size="6" multiple>
+                <option *ngFor="let bType of bTypes" [ngValue]="bType.BusinessTypeId">
+                    {{bType.Kind}}
+                </option>
+            </select>
+        </div>
+        <ng-container *ngIf="providerForm.controls.BTypes.errors">
+            <div class="help is-danger" *ngIf="providerForm.controls.BTypes.errors.required">
+                Value is required
+            </div>
+        </ng-container>
+    </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="button is-primary" [disabled]="providerForm.invalid" type="submit">Submit</button>
+        <button class="button is-warning" type="button" (click)="onResetClick()">
+            Reset
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column">
+            <div  class="align-items-end buttons">
+                <button class="btn btn-outline-dark" (click)="goToRead()">Return</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+    <div>Form Content: {{providerForm.value | json}}</div>
+    <div>Form is valid: {{providerForm.valid}}</div>
+    <div>Erros arount Marbles: {{providerForm.controls.Marbles.errors| json}} </div>
+    <div>Erros arount BTypes: {{providerForm.controls.BTypes.errors| json}} </div>
+    <br>

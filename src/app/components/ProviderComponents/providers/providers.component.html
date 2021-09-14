@@ -1,0 +1,52 @@
+<br />
+<button class="btn btn-lg btn-outline-primary" (click)="goToCreate()">Create Provider</button>
+
+<nav class="navbar">
+    <input class="form-control w-50" type="text" name="CompanyTitle" placeholder="Searching by Company title"
+        [(ngModel)]="companyTitle" (ngModelChange)="SearchByTitle()">    
+</nav>
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th class="align-middle text-center">Actions</th>
+            <th class="align-middle text-center" (click)="sort('CompanyTitle')">Company Title&nbsp;<i class="fa fa-sort"></i></th>
+            <th class="align-middle text-center">Company Description</th>
+            <th class="align-middle text-center">Company Photo</th>
+            <th class="align-middle text-center">Phone</th>
+            <th  (click)="sort('WebSite')">WebSite&nbsp;<i class="fa fa-sort"></i></th>
+            <th class="align-middle text-center" (click)="sort('Email')">Email&nbsp;<i class="fa fa-sort"></i></th>
+            <th class="align-middle text-center" (click)="sort('Country')">Location&nbsp;<i class="fa fa-sort"></i></th>
+            <th class="align-middle text-center" >Business Types</th>
+            <th class="align-middle text-center" >Marble</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let provider of providers | orderBy: key:reverse | paginate: {itemsPerPage:3,currentPage:p};">
+            <td class="align-middle">
+                <button class="btn btn-primary" (click)="SelectProvider(provider)">Update</button>
+                <button class="btn btn-danger" (click)="deleteProvider(provider.ProviderId)">Delete</button>
+            </td>
+            <td class="align-middle">{{provider.CompanyTitle}}</td>
+            <td class="align-middle">{{provider.CompanyDescription}}</td>
+            <td class="align-middle">
+                <img style="max-width: 100px;" [src]="provider.CompanyPhoto.replace('~','')">
+            </td>
+            <td class="align-middle">{{provider.Phone.replace('-','')}}</td>
+            <td class="align-middle">{{provider.WebSite}}</td>
+            <td class="align-middle">{{provider.Email}}</td>
+            <td class="align-middle">{{provider.Location.Country}}</td>
+            <td class="align-middle">
+                <ul class="list-unstyled"  *ngFor="let btype of provider.BusinessTypes">
+                    <li>{{btype.Kind}}</li>
+                </ul>
+            </td>
+            <td class="align-middle">
+                <ul *ngFor="let marble of provider.Marbles">
+                    <li>{{marble.Name}}</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

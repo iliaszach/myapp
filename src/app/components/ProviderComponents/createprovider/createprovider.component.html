@@ -1,0 +1,115 @@
+<div class="container">
+    <form #content #myForm="ngForm" [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+
+        <h5>Compamy Details</h5>
+        <div class="columns">
+            <div class="column">
+                <app-input label="Company Title" [control]="cardForm.get('CompannyTitle')"></app-input>
+            </div>
+            <div class="column">
+                <app-input label="Company Description" [control]="cardForm.get('CompanyDescription')"></app-input>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <app-input label="Photo" [control]="cardForm.get('CompanyPhoto')"></app-input>
+                <!-- <app-uploadphoto (onUploadFinished)="uploadFinished($event)"></app-uploadphoto> -->
+            </div>
+            <div class="column">
+                <app-input label="Email" [control]="cardForm.get('CompanyEmail')"></app-input>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <app-input label="Phone" [control]="cardForm.get('CompanyPhone')"></app-input>
+            </div>
+            <div class="column">
+                <app-input label="WebSite" [control]="cardForm.get('WebSite')"></app-input>
+            </div>
+        </div>
+        <hr>
+        <h5>Create Location</h5>
+        <div class="columns">
+            <div class="column">
+                <app-input label="Country" [control]="cardForm.get('Country')"></app-input>
+            </div>
+            <div class="column">
+                <app-input label="City" [control]="cardForm.get('City')"></app-input>
+            </div>
+            <div class="column">
+                <app-input label="Address" [control]="cardForm.get('Address')"></app-input>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <app-input label="Lat" [control]="cardForm.get('Lat')"></app-input>
+            </div>
+            <div class="column">
+                <app-input label="Lng" [control]="cardForm.get('Lng')"></app-input>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <h5>Select Marble</h5>
+                <div class="field">
+                    <label class="label"></label>
+                    <div class="control">
+                        <select formControlName="Marbles" class="form-control" size="10" multiple>
+                            <option *ngFor="let marble of marbles" [ngValue]="marble.MarbleId">
+                                {{marble.Name}}
+                            </option>
+                        </select>
+                    </div>
+                    <ng-container *ngIf="cardForm.controls.Marbles.errors">
+                        <div class="help is-danger" *ngIf="cardForm.controls.Marbles.errors.required">
+                            Value is required
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="column">
+                <h5>Select Business Type</h5>
+                <div class="field">
+                    <label class="label"></label>
+                    <div class="control">
+                        <select formControlName="BTypes" class="form-control" size="6" multiple>
+                            <option *ngFor="let bType of bTypes" [ngValue]="bType.BusinessTypeId">
+                                {{bType.Kind}}
+                            </option>
+                        </select>
+                    </div>
+                    <ng-container *ngIf="cardForm.controls.BTypes.errors">
+                        <div class="help is-danger" *ngIf="cardForm.controls.BTypes.errors.required">
+                            Value is required
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">Submit</button>
+            <button class="button is-warning" type="button" (click)="onResetClick()">
+                Reset
+            </button>
+        </div>
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column">
+                <div class="align-items-end buttons">
+                    <button class="btn btn-outline-dark" (click)="goToRead()">Return</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div>Form Content: {{cardForm.value | json}}</div>
+        <div>Form is valid: {{cardForm.valid}}</div>
+        <div>Erros arount Marbles: {{cardForm.controls.Marbles.errors| json}} </div>
+        <div>Erros arount BTypes: {{cardForm.controls.BTypes.errors| json}} </div>
+        <br>

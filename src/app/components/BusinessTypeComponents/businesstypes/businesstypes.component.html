@@ -1,0 +1,13 @@
+<hr />
+<h4>Select Business Types</h4>
+
+<div id="base" class="col-md - 2">
+    <label for="bTypes"></label>
+</div>
+<div class="col-mid-10">
+    <select name="bTypes" id="SelectBTypesTable" class="form-control" size="6" multiple>
+        <option *ngFor="let bType of businessTypes" value="{{bType.BusinessTypeId}}">
+            {{bType.Kind}}
+        </option>
+    </select>
+</div>

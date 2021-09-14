@@ -1,0 +1,8 @@
+.invalidPhoto { color:rgba(231, 4, 4, 0.8)!important; }
+ 
+.upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+}

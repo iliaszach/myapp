@@ -1,0 +1,21 @@
+<input  type="file"
+        #image 
+        (change)="uploadFile((image.files)!)" 
+        class="form_gallery-upload"
+        accept="image/png, image/jpeg , image/jpg"
+>
+        
+<button 
+    *ngIf="hasFile else Upload" 
+    (click)="image.click()">
+
+        {{fileName}}
+
+        <small class="upload" *ngIf="progress > 0">{{progress}}%</small>
+        <span class="upload" *ngIf="message">{{message}}</span> 
+        
+</button>    
+
+<ng-template #Upload>
+    <button class="invalidPhoto" (click)="image.click()">Upload Image</button>
+</ng-template>
